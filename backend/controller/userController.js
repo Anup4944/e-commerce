@@ -17,13 +17,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     avatar: { public_id: "myCloud.public_id", url: "myCloud.secure_url" },
   });
 
-  //   const token = user.generateToken();
-
-  //   res.status(200).json({
-  //     status: "success",
-  //     token,
-  //   });
-
   sendToken(user, 201, res);
 });
 
@@ -46,13 +39,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isMatch) {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
-
-  //   const token = user.generateToken();
-
-  //   res.status(200).json({
-  //     status: "success",
-  //     token,
-  //   });
 
   sendToken(user, 200, res);
 });
@@ -137,4 +123,123 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   sendToken(user, 200, res);
+});
+
+// GET USER DETAILS / USER PROFILE
+
+exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    status: "success",
+    user,
+  });
+});
+
+// UPDATE PASSWORD
+
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isMatch = await user.matchPassword(req.body.oldPassword);
+
+  if (!isMatch) {
+    return next(new ErrorHandler("Invalid old password", 400));
+  }
+
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password does not match", 400));
+  }
+  user.password = req.body.newPassword;
+
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+// UPDATE USER PROFILE
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  const user = await User.findByIdAndUpdate(req.user.id, newData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    status: "success",
+    message: "Profile has been updated",
+    user,
+  });
+});
+
+// GET USER DETAILS / USER PROFILE
+
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    status: "success",
+    users,
+  });
+});
+
+// GET SINGLE USER DETAILS / USER PROFILE
+
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.findById(req.params.id);
+
+  if (!users) {
+    return next(new ErrorHandler("User does not exits"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    users,
+  });
+});
+
+// UPDATE USER PROFILE BY ADMIN
+exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
+  const newData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  if (!user) {
+    return next(new ErrorHandler("No user found", 400));
+  }
+
+  res.status(200).json({
+    status: "success",
+    message: "Profile has been updated",
+    user,
+  });
+});
+
+// DELETE USER PROFILE BY ADMIN
+exports.deleteUserProfile = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(new ErrorHandler("No user found", 400));
+  }
+
+  await user.remove();
+
+  res.status(200).json({
+    status: "success",
+    message: "Profile has been deleted",
+  });
 });

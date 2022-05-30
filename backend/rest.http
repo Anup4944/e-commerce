@@ -1,7 +1,7 @@
  // *********************** PRODUCT  *********************** //
 
 ### 
-GET http://localhost:4000/api/v1/product?page=3
+GET http://localhost:4000/api/v1/admin/product?page=3
 
 
 // ?page=1
@@ -13,7 +13,7 @@ GET http://localhost:4000/api/v1/product?page=3
 
 
 ###
-POST http://localhost:4000/api/v1/product/new
+POST http://localhost:4000/api/v1/admin/product/new
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### 
-PUT http://localhost:4000/api/v1/product/629445f7b243cb567b937213
+PUT http://localhost:4000/api/v1/admin/product/629445f7b243cb567b937213
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 
 ###
-DELETE http://localhost:4000/api/v1/product/629421eab8b9bed13f09db4a
+DELETE http://localhost:4000/api/v1/admin/product/629421eab8b9bed13f09db4a
 
 ###
 GET http://localhost:4000/api/v1/product/629421f0b8b9bed13f09db4
@@ -58,8 +58,8 @@ POST http://localhost:4000/api/v1/register
 Content-Type: application/json
 
 {
-    "name" : "Anup Poudel",
-    "email":"anuppoudel60@gmail.com",
+    "name" : "James Maddison",
+    "email":"jm@m.com",
     "password" : "anuppoudel"
 }
 
@@ -69,8 +69,8 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
- "email":"anuppoudel60@gmail.com",
- "password":"password123"
+ "email":"anup60@gmail.com",
+ "password":"anuppoudel"
 }
 
 ### LOGOUT USER
@@ -93,3 +93,45 @@ Content-Type: application/json
   "confirmPassword" :"password123"
 }
 
+### GET USER PROFILE
+GET http://localhost:4000/api/v1/me
+
+### UPDATE PASSWORD
+PUT http://localhost:4000/api/v1/password/update
+Content-Type: application/json
+
+{
+  "oldPassword": "password123", 
+  "newPassword" :"anuppoudel",
+  "confirmPassword" :"anuppoudel"
+}
+
+### UPDATE PROFILE
+PUT http://localhost:4000/api/v1/me/update
+Content-Type: application/json
+
+{
+  "name": "Anup", 
+  "email" :"anup60@gmail.com"
+}
+
+### GET ALL USERS
+GET http://localhost:4000/api/v1/admin/users
+
+### GET OTHER USERS DETAILS
+GET http://localhost:4000/api/v1/admin/user/6294cee96a294e8e7c7bf432
+
+
+### UPDATE USER DETAILS
+PUT http://localhost:4000/api/v1/admin/user/6294cee96a294e8e7c7bf432
+Content-Type: application/json
+
+{
+ "name":"James",
+ "email":"james@gmail.com",
+ "role":"user"
+}
+
+
+### DELETE USER 
+DELETE http://localhost:4000/api/v1/admin/user/6294cee96a294e8e7c7bf432

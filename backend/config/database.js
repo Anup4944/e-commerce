@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const connectDb = () => {
   mongoose
-    .connect(process.env.DB_URL)
+    .connect(process.env.DB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
     .then((con) =>
       console.log(`Database connection sucessfull ${con.connection.host}`)
     );

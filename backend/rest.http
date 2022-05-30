@@ -1,11 +1,12 @@
  // *********************** PRODUCT  *********************** //
 
 ### 
-GET http://localhost:4000/api/v1/product?page=1
+GET http://localhost:4000/api/v1/product
+
+
+// ?page=1
 
 //// ?keyword=product2&category=laptop
-
-
 
 /// ?keyword=product1&price[gte]=800&price[lte]=1200
 
@@ -47,3 +48,27 @@ DELETE http://localhost:4000/api/v1/product/629421eab8b9bed13f09db4a
 
 ###
 GET http://localhost:4000/api/v1/product/629421f0b8b9bed13f09db4
+
+
+ // *********************** USER  *********************** //
+
+
+### REGISTER USER
+POST http://localhost:4000/api/v1/register
+Content-Type: application/json
+
+{
+    "name" : "Danny Welbeck",
+    "email":"dw@gmail.com",
+    "password" : "anuppoudel"
+}
+
+
+### LOGIN USER
+POST http://localhost:4000/api/v1/login
+Content-Type: application/json
+
+{
+ "email":"dw@gmail.com",
+ "password":"anuppoudel"
+}

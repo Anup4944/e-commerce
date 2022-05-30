@@ -1,0 +1,41 @@
+ // *********************** PRODUCT  *********************** //
+
+### 
+GET http://localhost:4000/api/v1/product
+
+###
+POST http://localhost:4000/api/v1/product/new
+Content-Type: application/json
+
+{
+    "name":"Product 2",
+    "desc":"Test product",
+    "price": 100,
+    "category" : "Laptop",
+    "images":{
+        "public_id":"sample id",
+        "url":"sample"
+    }
+}
+
+### 
+PUT http://localhost:4000/api/v1/product/629421eab8b9bed13f09db4a
+Content-Type: application/json
+
+{
+    "name":"Product 1 updated",
+    "desc":"Test product updated",
+    "price": 1200,
+    "category" : "Laptop",
+    "images":{
+        "public_id":"sample id",
+        "url":"sample"
+    }
+}
+
+
+###
+DELETE http://localhost:4000/api/v1/product/629421eab8b9bed13f09db4a
+
+###
+GET http://localhost:4000/api/v1/product/629421f0b8b9bed13f09db4

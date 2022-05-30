@@ -2,6 +2,7 @@ const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors.js");
 const User = require("../models/User.js");
 const sendToken = require("../utils/jwtToken.js");
+const sendEmail = require("../utils/sendEmail.js");
 
 // REGISTER USER
 
@@ -31,6 +32,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 201, res);
 });
 
+// LOGIN USER
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -58,4 +60,59 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   //   });
 
   sendToken(user, 200, res);
+});
+
+// LOGOUT USER
+exports.logout = catchAsyncErrors(async (req, res, next) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnlt: true,
+  });
+
+  res.status(200).json({
+    status: "success",
+    message: "Logged out",
+  });
+});
+
+// FORGOT PASSWORD
+
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new ErrorHandler("User not found", 404));
+  }
+
+  const resetPassToken = user.getResetPasswordToken();
+
+  console.log(resetPassToken);
+
+  await user.save({ validateBeforeSave: false });
+
+  const resetUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/api/v1/password/reset/${resetPassToken}`;
+
+  const message = `Reset your password by clicking on the link below: \n\n ${resetUrl}
+  \n\n if you have not requested this email then please ignore it.
+  `;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `E-commerce : Password reset`,
+      message,
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: `Email sent to ${user.email}`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save({ validateBeforeSave: false });
+    return next(new ErrorHandler(error.message, 500));
+  }
 });

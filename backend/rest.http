@@ -1,7 +1,7 @@
  // *********************** PRODUCT  *********************** //
 
 ### 
-GET http://localhost:4000/api/v1/product
+GET http://localhost:4000/api/v1/product?page=3
 
 
 // ?page=1
@@ -17,10 +17,10 @@ POST http://localhost:4000/api/v1/product/new
 Content-Type: application/json
 
 {
-    "name":"Product10",
+    "name":"Product11",
     "desc":"Test product",
     "price": 100,
-    "category" : "Laptop",
+    "category" : "Machine",
     "images":{
         "public_id":"sample id",
         "url":"sample"
@@ -58,8 +58,8 @@ POST http://localhost:4000/api/v1/register
 Content-Type: application/json
 
 {
-    "name" : "Danny Welbeck",
-    "email":"dw@gmail.com",
+    "name" : "Anup Poudel",
+    "email":"anuppoudel60@gmail.com",
     "password" : "anuppoudel"
 }
 
@@ -72,3 +72,15 @@ Content-Type: application/json
  "email":"dw@gmail.com",
  "password":"anuppoudel"
 }
+
+### LOGOUT USER
+GET http://localhost:4000/api/v1/logout
+
+### FOROGOT PASSWORD
+POST http://localhost:4000/api/v1/forgot/password
+Content-Type: application/json
+
+{
+ "email":"anuppoudel60@gmail.com"
+}
+

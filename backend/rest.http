@@ -69,8 +69,8 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
- "email":"dw@gmail.com",
- "password":"anuppoudel"
+ "email":"anuppoudel60@gmail.com",
+ "password":"password123"
 }
 
 ### LOGOUT USER
@@ -81,6 +81,15 @@ POST http://localhost:4000/api/v1/forgot/password
 Content-Type: application/json
 
 {
- "email":"anuppoudel60@gmail.com"
+  "email":"anuppoudel60@gmail.com"
+}
+
+### RESET PASSWORD
+PUT http://localhost:4000/api/v1/reset/password/04df6e72c176e49b66e4540604ed64479deb732d
+Content-Type: application/json
+
+{
+  "password": "password123",
+  "confirmPassword" :"password123"
 }
 

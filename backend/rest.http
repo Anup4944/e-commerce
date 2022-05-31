@@ -191,7 +191,22 @@ Content-Type: application/json
 
 
 ### GET SINGLE ORDER --ADMIN
-GET http://localhost:4000/api/v1/order/62958f182bf0ba0608be17dc
+GET http://localhost:4000/api/v1/order/62958a5ad1fe3e105086e79a
 
 ### GET OWM ORDER 
 GET http://localhost:4000/api/v1/my/order
+
+
+### GET ALL ORDER  --ADMIN
+GET http://localhost:4000/api/v1/admin/orders
+
+### GET ALL ORDER  --ADMIN
+PUT http://localhost:4000/api/v1/admin/order/62958a5ad1fe3e105086e79a
+Content-Type: application/json
+
+{
+  "status":"Processing"
+}
+
+### DELETE ORDER
+DELETE http://localhost:4000/api/v1/admin/order/62958f182bf0ba0608be17dc

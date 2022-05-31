@@ -16,6 +16,6 @@ router
   .route("/order/:id")
   .get(isAuthenticatedUser, authorizedRoles("admin"), getSingleOrder);
 
-router.route("/order/me").get(myOrders);
+router.route("/my/order").get(isAuthenticatedUser, myOrders);
 
 module.exports = router;

@@ -87,7 +87,7 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
- "email":"jm@m.com",
+ "email":"anup60@gmail.com",
  "password":"anuppoudel"
 }
 
@@ -191,7 +191,7 @@ Content-Type: application/json
 
 
 ### GET SINGLE ORDER --ADMIN
-GET http://localhost:4000/api/v1/order/62958a5ad1fe3e105086e79a
+GET http://localhost:4000/api/v1/order/62958f182bf0ba0608be17dc
 
 ### GET OWM ORDER 
-GET http://localhost:4000/api/v1/order/me
+GET http://localhost:4000/api/v1/my/order

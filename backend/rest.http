@@ -17,10 +17,10 @@ POST http://localhost:4000/api/v1/admin/product/new
 Content-Type: application/json
 
 {
-    "name":"Product11",
+    "name":"Product12",
     "desc":"Test product",
     "price": 100,
-    "category" : "Machine",
+    "category" : "Laptop",
     "images":{
         "public_id":"sample id",
         "url":"sample"
@@ -87,7 +87,7 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
- "email":"anup60@gmail.com",
+ "email":"jm@m.com",
  "password":"anuppoudel"
 }
 
@@ -153,3 +153,45 @@ Content-Type: application/json
 
 ### DELETE USER 
 DELETE http://localhost:4000/api/v1/admin/user/62957a6ada5c3e52d4cac7ce
+
+
+ // *********************** ORDERS  *********************** //
+
+### NEW ORDER 
+POST http://localhost:4000/api/v1/order/new
+Content-Type: application/json
+
+{
+  "itemPrice" : 1200,
+  "taxPrice" : 100,
+  "shippingPrice" : 100,
+  "totalPrice" : 335,
+  "orderedItems": [
+    {
+      "product":"62958ec82bf0ba0608be17d7",
+      "name":"Product12",
+      "price":"1200",
+      "image":"sample image",
+      "quantity":"1"
+    }
+  ],
+  "shippingInfo":{
+    "address":"10 Royal Garden",
+    "suburb":"Queanbeyan",
+    "state":"NSW",
+    "country":"Australia",
+    "postCode":"2216",
+    "phoneNo":"458786222"
+  },
+  "paymentInfo":{
+    "id":"test id",
+    "status":"succeeded"
+  }
+}
+
+
+### GET SINGLE ORDER --ADMIN
+GET http://localhost:4000/api/v1/order/62958a5ad1fe3e105086e79a
+
+### GET OWM ORDER 
+GET http://localhost:4000/api/v1/order/me

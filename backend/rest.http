@@ -1,7 +1,7 @@
  // *********************** PRODUCT  *********************** //
 
 ### 
-GET http://localhost:4000/api/v1/admin/product?page=3
+GET http://localhost:4000/api/v1/product
 
 
 // ?page=1
@@ -48,6 +48,24 @@ DELETE http://localhost:4000/api/v1/admin/product/629421eab8b9bed13f09db4a
 
 ###
 GET http://localhost:4000/api/v1/product/629421f0b8b9bed13f09db4
+
+
+### ADD REVIEW
+PUT http://localhost:4000/api/v1/product/review
+Content-Type: application/json
+
+{
+  "productId" :"62957a1eda5c3e52d4cac7c7",
+  "comment":"bad",
+  "rating":"1"
+}
+
+### GET ALL  REVIEW
+GET http://localhost:4000/api/v1/reviews?id=62957a1eda5c3e52d4cac7c7
+
+
+### DELETE REVIEW OF PARTICULAR PRODUCT
+DELETE http://localhost:4000/api/v1/reviews?productId=62957a1eda5c3e52d4cac7c7&id=62957a8bda5c3e52d4cac7d2
 
 
  // *********************** USER  *********************** //
@@ -134,4 +152,4 @@ Content-Type: application/json
 
 
 ### DELETE USER 
-DELETE http://localhost:4000/api/v1/admin/user/6294cee96a294e8e7c7bf432
+DELETE http://localhost:4000/api/v1/admin/user/62957a6ada5c3e52d4cac7ce

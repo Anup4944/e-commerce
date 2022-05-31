@@ -1,3 +1,4 @@
 /node_modules
 /backend/config/config.env
 /frontend/node_modules
+/frontend/src/images

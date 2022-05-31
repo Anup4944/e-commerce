@@ -208,5 +208,5 @@ Content-Type: application/json
   "status":"Processing"
 }
 
-### DELETE ORDER
-DELETE http://localhost:4000/api/v1/admin/order/62958f182bf0ba0608be17dc
+### DELETE ORDER --ADMIN
+DELETE http://localhost:4000/api/v1/admin/order/62958a5ad1fe3e105086e79a

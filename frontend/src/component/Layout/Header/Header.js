@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/moon-4.jpg";
+import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
   return (
@@ -27,6 +28,7 @@ const Header = () => {
       nav4justifyContent="flex-start"
       link1ColorHover="#eb4034"
       link1Margin="1vmax"
+      ProfileIconElement={FaUserAlt}
       profileIconUrl="/login"
       profileIconColor="rgba(35, 35, 35,0.8)"
       searchIconColor="rgba(35, 35, 35,0.8)"

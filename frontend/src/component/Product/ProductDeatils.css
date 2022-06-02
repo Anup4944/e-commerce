@@ -4,7 +4,6 @@
   padding: 6vmax;
   box-sizing: border-box;
   display: flex;
-  background-color: rgb(192, 177, 177);
 }
 
 .ProductDetails > div {
@@ -15,7 +14,6 @@
   align-items: center;
   padding: 2vmax;
   box-sizing: border-box;
-  border: 1px solid red;
 }
 
 .ProductDetails > div:last-child {
@@ -23,7 +21,8 @@
 }
 
 .CarouselImage {
-  width: 20vmax;
+  width: 100%;
+  height: 100%;
 }
 
 .prodDetails-1 > h2 {
@@ -146,6 +145,53 @@
 .submitReview:hover {
   background-color: rgb(197, 68, 45);
   transform: scale(1.1);
+}
+
+.reviewHeading {
+  color: red;
+  font: 500 1.4vmax "Roboto";
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+  padding: 1vmax;
+  width: 20vmax;
+  margin: auto;
+  margin-bottom: 4vmax;
+}
+
+.reviews {
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.reviewCard {
+  flex: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+  border: 1px solid rgba(56, 56, 56, 0.116);
+  width: 30vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vmax;
+  padding: 3vmax;
+}
+
+.reviewCard > img {
+  width: 5vmax;
+}
+
+.reviewCard > p {
+  color: rgba(0, 0, 0, 0.836);
+  font: 600 0.9vmax "Roboto";
+}
+.reviewCard > span {
+  color: rgba(27, 19, 19, 0.445);
+  font: 500 0.9vmax cursive;
+}
+
+.noReviews {
+  text-align: center;
+  font: 400 1.3vmax "Gill Sans";
 }
 
 @media screen and (max-width: 600px) {

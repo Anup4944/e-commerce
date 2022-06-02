@@ -1,9 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import "./Home.css";
 import { FaMouse } from "react-icons/fa";
-import Product from "./Product";
+import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductAction } from "../../Actions/productAction";
+import {
+  clearErrorAction,
+  getProductAction,
+} from "../../Actions/productAction";
 import Loader from "../Layout/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     if (error) {
-      return toast.error(error, {
+      toast.error(error, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -26,6 +29,7 @@ const Home = () => {
         draggable: true,
         progress: undefined,
       });
+      dispatch(clearErrorAction());
     }
     dispatch(getProductAction());
   }, [dispatch, error, toast]);
@@ -58,7 +62,7 @@ const Home = () => {
           <h2 className="homeHeading">Featured Products</h2>
 
           <div className="container" id="container">
-            {product && product.map((prod) => <Product product={prod} />)}
+            {product && product.map((prod) => <ProductCard product={prod} />)}
           </div>
         </Fragment>
       )}

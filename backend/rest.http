@@ -56,8 +56,8 @@ Content-Type: application/json
 
 {
   "productId" :"62957a1eda5c3e52d4cac7c7",
-  "comment":"bad",
-  "rating":"1"
+  "comment":"Poor",
+  "rating":"2"
 }
 
 ### GET ALL  REVIEW
@@ -76,8 +76,8 @@ POST http://localhost:4000/api/v1/register
 Content-Type: application/json
 
 {
-    "name" : "James Maddison",
-    "email":"jm@m.com",
+    "name" : "Danny Welbeck",
+    "email":"dw@wcom",
     "password" : "anuppoudel"
 }
 
@@ -87,7 +87,7 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
- "email":"anup60@gmail.com",
+ "email":"jm@m.com",
  "password":"anuppoudel"
 }
 

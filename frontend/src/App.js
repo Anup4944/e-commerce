@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Webfont from "webfontloader";
 import React from "react";
 import Home from "./component/Home/Home";
+import Loader from "./component/Layout/Loader/Loader";
 
 function App() {
   React.useEffect(() => {

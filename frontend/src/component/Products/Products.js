@@ -1,20 +1,34 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Layout/Loader/Loader";
 import { getProductAction } from "../../Actions/productAction";
 import ProductCard from "../Home/ProductCard";
+import { useParams } from "react-router-dom";
+import Pagination from "react-js-pagination";
 
 const Products = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
-  const { isLoading, product, error, productCount } = useSelector(
-    (state) => state.products
-  );
+  const { keyword } = useParams();
+
+  const {
+    isLoading,
+    product,
+    error,
+    productCount,
+    resultPerPage,
+  } = useSelector((state) => state.products);
+
+  const setCurrentPageNo = (e) => {
+    setCurrentPage(e);
+    console.log(currentPage);
+  };
 
   useEffect(() => {
-    dispatch(getProductAction());
-  }, [dispatch]);
+    dispatch(getProductAction(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
   return (
     <Fragment>
       {isLoading ? (
@@ -27,6 +41,22 @@ const Products = () => {
               product.map((prod) => (
                 <ProductCard key={prod._id} product={prod} />
               ))}
+          </div>
+          <div className="paginationBox">
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={resultPerPage}
+              totalItemsCount={productCount}
+              onChange={setCurrentPageNo}
+              nextPageText="Next"
+              prevPageText="Prev"
+              firstPageText="1st"
+              lastPageText="Last"
+              itemClass="page-item"
+              linkClass="page-link"
+              activeClass="pageItemActive"
+              activeLinkClass="pageLinkActive"
+            />
           </div>
         </Fragment>
       )}

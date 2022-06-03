@@ -28,9 +28,13 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     .filter()
     .pagination(resultPerPage);
 
+  console.log(req.query);
+
   const products = await apiFeature.query;
 
-  res.status(200).json({ status: "success", products, productCount });
+  res
+    .status(200)
+    .json({ status: "success", products, productCount, resultPerPage });
 });
 
 // GET SINGLE PRODUCTS

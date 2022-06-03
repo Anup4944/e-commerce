@@ -14,3 +14,51 @@
   padding: 0 5vmax;
   justify-content: center;
 }
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  margin: 6vmax;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  list-style: none;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  padding: 1vmax 1.5vmax;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.page-item:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-item:last-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-link {
+  text-decoration: none;
+  font: 300 1vmax "Roboto";
+  color: rgb(80, 80, 80);
+  transition: all 0.3s;
+}
+
+.page-item:hover {
+  background-color: rgb(69, 75, 75);
+}
+
+.page-item:hover .page-link {
+  color: rgb(198, 127, 20);
+}
+
+.pageItemActive {
+  background-color: tomato;
+  color: white;
+}

@@ -10,11 +10,15 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from "../Constants/productContants";
 
-export const getProductAction = () => async (dispatch) => {
+export const getProductAction = (keyword = "", currentPage = 1) => async (
+  dispatch
+) => {
   try {
     dispatch({ type: ALL_PRODUCT_REQUEST });
 
-    const { data } = await axios.get("/api/v1/product");
+    let link = `/api/v1/product?keyword=${keyword}&page=${currentPage}`;
+
+    const { data } = await axios.get(link);
 
     dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
   } catch (error) {

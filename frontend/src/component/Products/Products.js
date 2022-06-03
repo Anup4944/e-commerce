@@ -2,12 +2,17 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Layout/Loader/Loader";
-import { getProductAction } from "../../Actions/productAction";
+import {
+  clearErrorAction,
+  getProductAction,
+} from "../../Actions/productAction";
 import ProductCard from "../Home/ProductCard";
 import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { Typography } from "@mui/material";
 import { Slider } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const categories = ["Electronics", "Footwear", "Clothing", "Shoes", "Gaming"];
 
@@ -39,8 +44,20 @@ const Products = () => {
   };
 
   useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearErrorAction());
+    }
     dispatch(getProductAction(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, error, toast]);
 
   let count = filteredProductsCount;
   return (
@@ -58,6 +75,7 @@ const Products = () => {
           </div>
           <div className="filterBox">
             <Typography>
+              <ToastContainer />
               <Slider
                 value={price}
                 onChange={handleOnPriceChange}

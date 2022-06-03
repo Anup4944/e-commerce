@@ -13,6 +13,7 @@
   flex-wrap: wrap;
   padding: 0 5vmax;
   justify-content: center;
+  min-height: 30vh;
 }
 
 .paginationBox {
@@ -88,6 +89,10 @@
   color: tomato;
 }
 
+.filterBox > fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.539);
+}
+
 @media screen and (max-width: 600px) {
   .filterBox {
     width: 20vmax;
@@ -97,5 +102,9 @@
 
   .page-link {
     font: 300 1.7vmax "Roboto";
+  }
+
+  .catgeoryLi {
+    font-size: 1.8vmax;
   }
 }

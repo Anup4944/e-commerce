@@ -17,13 +17,12 @@ const Products = () => {
     isLoading,
     product,
     error,
-    productCount,
+    productsCount,
     resultPerPage,
   } = useSelector((state) => state.products);
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
-    console.log(currentPage);
   };
 
   useEffect(() => {
@@ -42,22 +41,25 @@ const Products = () => {
                 <ProductCard key={prod._id} product={prod} />
               ))}
           </div>
-          <div className="paginationBox">
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={resultPerPage}
-              totalItemsCount={productCount}
-              onChange={setCurrentPageNo}
-              nextPageText="Next"
-              prevPageText="Prev"
-              firstPageText="1st"
-              lastPageText="Last"
-              itemClass="page-item"
-              linkClass="page-link"
-              activeClass="pageItemActive"
-              activeLinkClass="pageLinkActive"
-            />
-          </div>
+
+          {resultPerPage < productsCount && (
+            <div className="paginationBox">
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resultPerPage}
+                totalItemsCount={productsCount}
+                onChange={setCurrentPageNo}
+                nextPageText="Next"
+                prevPageText="Prev"
+                firstPageText="1st"
+                lastPageText="Last"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeClass="pageItemActive"
+                activeLinkClass="pageLinkActive"
+              />
+            </div>
+          )}
         </Fragment>
       )}
     </Fragment>

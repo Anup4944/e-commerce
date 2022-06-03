@@ -1,7 +1,7 @@
  // *********************** PRODUCT  *********************** //
 
 ### 
-GET http://localhost:4000/api/v1/product?page=2
+GET http://localhost:4000/api/v1/product
 
 
 // ?page=1

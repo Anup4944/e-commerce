@@ -24,14 +24,25 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const productCount = await Product.countDocuments();
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
 
-  const products = await apiFeature.query;
+  let products = await apiFeature.query;
+
+  let filteredProductCount = products.length;
+
+  apiFeature.pagination(resultPerPage);
+
+  products = await apiFeature.query;
 
   res
     .status(200)
-    .json({ status: "success", products, productCount, resultPerPage });
+    .json({
+      status: "success",
+      products,
+      productCount,
+      resultPerPage,
+      filteredProductCount,
+    });
 });
 
 // GET SINGLE PRODUCTS

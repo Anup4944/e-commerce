@@ -8,7 +8,7 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from "../Constants/productContants";
 
-export const productReducer = (state = { products: [] }, action) => {
+export const productReducer = (state = { product: [] }, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
       return {
@@ -21,7 +21,7 @@ export const productReducer = (state = { products: [] }, action) => {
         ...state,
         isLoading: false,
         product: action.payload.products,
-        productsCount: action.payload.productsCount,
+        productsCount: action.payload.productCount,
       };
     case ALL_PRODUCT_FAIL:
       return {

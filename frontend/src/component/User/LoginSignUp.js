@@ -37,7 +37,7 @@ const LoginSignUp = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading, isAuth, user: userLogin, error } = useSelector(
+  const { isLoading, isAuth, user: userLogin, error, message } = useSelector(
     (state) => state.user
   );
 
@@ -106,7 +106,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuth) {
-      navigate("/account");
+      navigate("/");
     }
   }, [dispatch, error, toast, navigate, isAuth]);
   return (

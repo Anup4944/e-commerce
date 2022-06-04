@@ -10,11 +10,13 @@ import {
 import Loader from "../Layout/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { clearMsgAction } from "../../Actions/userAction";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const { product, isLoading, error } = useSelector((state) => state.products);
+  const { message } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {
@@ -29,8 +31,21 @@ const Home = () => {
       });
       dispatch(clearErrorAction());
     }
+
+    if (message) {
+      toast.success(message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearMsgAction());
+    }
     dispatch(getProductAction());
-  }, [dispatch, error, toast]);
+  }, [dispatch, error, toast, message]);
   return (
     <Fragment>
       {isLoading ? (
@@ -48,6 +63,7 @@ const Home = () => {
             draggable
             pauseOnHover
           />
+
           <div className="banner">
             <p>Welcome to my e-commerce store</p>
             <h1>Find amazing proucts below</h1>

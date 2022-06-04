@@ -11,8 +11,11 @@ import Search from "./component/Products/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./store";
 import { loadUserAction } from "./Actions/userAction";
+import UserOptions from "./component/Layout/Header/UserOptions.js";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { user, isAuth } = useSelector((state) => state.user);
   React.useEffect(() => {
     Webfont.load({
       google: {
@@ -25,6 +28,8 @@ function App() {
   return (
     <Router>
       <Header />
+
+      {isAuth && <UserOptions user={user} />}
       <Routes>
         <Route extact path="/" element={<Home />} />
         <Route extact path="/product/:id" element={<ProductDetails />} />

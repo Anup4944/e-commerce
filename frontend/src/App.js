@@ -13,6 +13,9 @@ import store from "./store";
 import { loadUserAction } from "./Actions/userAction";
 import UserOptions from "./component/Layout/Header/UserOptions.js";
 import { useSelector } from "react-redux";
+import Profile from "./component/User/Profile.js";
+import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
+// import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -37,6 +40,9 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route extact path="/search" element={<Search />} />
         <Route extact path="/login" element={<LoginSignUp />} />
+        <Route element={<PrivateRoute />}>
+          <Route extact path="/account" element={<Profile />} />
+        </Route>
       </Routes>
       <Footer />
     </Router>

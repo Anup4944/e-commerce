@@ -17,6 +17,8 @@ import Profile from "./component/User/Profile.js";
 import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
 import Update from "./component/User/Update.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -50,6 +52,13 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route extact path="/password/update" element={<UpdatePassword />} />
         </Route>
+
+        <Route extact path="/password/forgot" element={<ForgotPassword />} />
+        <Route
+          extact
+          path="/password/reset/:token"
+          element={<ResetPassword />}
+        />
       </Routes>
       <Footer />
     </Router>

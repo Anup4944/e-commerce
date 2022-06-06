@@ -4,7 +4,11 @@ import {
   productDetailsReducer,
   productReducer,
 } from "./Reducers/productReducer";
-import { profileReducer, userReducer } from "./Reducers/userReducer";
+import {
+  forgotPassReducer,
+  profileReducer,
+  userReducer,
+} from "./Reducers/userReducer";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +16,7 @@ const store = configureStore({
     productDetails: productDetailsReducer,
     user: userReducer,
     profile: profileReducer,
+    forgotPass: forgotPassReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

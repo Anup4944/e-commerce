@@ -14,14 +14,19 @@
   align-items: center;
   padding: 2vmax;
   box-sizing: border-box;
+  border: 1px solid white;
 }
 
 .ProductDetails > div:last-child {
   align-items: flex-start;
 }
 
+.css-ohwg9z {
+  width: 100%;
+}
+
 .CarouselImage {
-  width: 20vmax;
+  width: 100%;
 }
 
 .prodDetails-1 > h2 {

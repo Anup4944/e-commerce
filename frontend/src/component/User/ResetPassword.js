@@ -4,13 +4,12 @@ import PasswordIcon from "@mui/icons-material/Password";
 import { useDispatch, useSelector } from "react-redux";
 import "./ResetPass.css";
 import { clearErrorAction, resetPassAction } from "../../Actions/userAction";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const { token } = useParams();
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,7 +40,7 @@ const ResetPassword = () => {
       dispatch(clearErrorAction());
     }
     if (status === "success") {
-      toast.success("Password changed successfullt", {
+      toast.success("Password changed successfully", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,

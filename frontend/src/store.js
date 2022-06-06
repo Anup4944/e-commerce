@@ -1,28 +1,22 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
-import thunk from "redux-thunk";
-
-import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productDetailsReducer,
   productReducer,
 } from "./Reducers/productReducer";
-import { userReducer } from "./Reducers/userReducer";
+import { profileReducer, userReducer } from "./Reducers/userReducer";
 
-const reducer = combineReducers({
-  products: productReducer,
-  productDetails: productDetailsReducer,
-  user: userReducer,
+const store = configureStore({
+  reducer: {
+    products: productReducer,
+    productDetails: productDetailsReducer,
+    user: userReducer,
+    profile: profileReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
-
-let initialState = {};
-
-const middleware = [thunk];
-
-const store = createStore(
-  reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
 
 export default store;

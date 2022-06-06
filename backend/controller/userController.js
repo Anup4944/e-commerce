@@ -169,6 +169,23 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
+  if (req.body.avatar !== "") {
+    const user = await User.findById(req.user.id);
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "e-commerce-user",
+    });
+
+    newData.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
   const user = await User.findByIdAndUpdate(req.user.id, newData, {
     new: true,
     runValidators: true,
@@ -176,9 +193,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   });
 
   res.status(200).json({
-    status: "success",
-    message: "Profile has been updated",
-    user,
+    status: true,
   });
 });
 
@@ -186,7 +201,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
-
+  d;
   res.status(200).json({
     status: "success",
     users,

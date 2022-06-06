@@ -99,7 +99,7 @@ POST http://localhost:4000/api/v1/forgot/password
 Content-Type: application/json
 
 {
-  "email":"anuppoudel60@gmail.com"
+  "email":"anup60@gmail.com"
 }
 
 ### RESET PASSWORD

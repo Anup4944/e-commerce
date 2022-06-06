@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../Layout/Loader/Loader";
 import "./Profile.css";
+import { clearErrorAction } from "../../Actions/userAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const navigate = useNavigate();
+
   const { user, isLoading, isAuth } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -19,6 +23,7 @@ const Profile = () => {
         <Loader />
       ) : (
         <Fragment>
+          <ToastContainer />
           <div className="profile">
             <div>
               <h1>My Profile</h1>

@@ -10,6 +10,7 @@ import {
   loginAction,
   clearErrorAction,
   registerAction,
+  clearMsgAction,
 } from "../../Actions/userAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +38,7 @@ const LoginSignUp = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading, isAuth, user: userLogin, error, message } = useSelector(
+  const { isLoading, isAuth, error, message } = useSelector(
     (state) => state.user
   );
 
@@ -106,9 +107,22 @@ const LoginSignUp = () => {
     }
 
     if (isAuth) {
-      navigate("/");
+      navigate("/account");
     }
-  }, [dispatch, error, toast, navigate, isAuth]);
+
+    if (message) {
+      toast.success(message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearMsgAction());
+    }
+  }, [dispatch, error, toast, navigate, isAuth, message]);
   return (
     <Fragment>
       {isLoading ? (

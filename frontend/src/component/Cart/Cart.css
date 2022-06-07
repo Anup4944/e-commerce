@@ -1,0 +1,127 @@
+.cartPage {
+  padding: 5vmax;
+}
+
+.cartHeader {
+  background-color: tomato;
+  width: 90%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  color: white;
+  margin: auto;
+  font: 300 1.1vmax "Roboto";
+}
+
+.cartHeader > p {
+  margin: 10px;
+}
+
+.cartHeader > p:last-child {
+  text-align: end;
+}
+
+.cartContainer {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+}
+.cartItemCon {
+  display: flex;
+  padding: 1vmax;
+  height: 8vmax;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.cartItemCon > img {
+  width: 5vmax;
+}
+
+.cartItemCon > div {
+  display: flex;
+  flex-direction: column;
+  margin: 0.3vmax 1vmax;
+}
+
+.cartItemCon > div > a {
+  font: 300 0.9vmax cursive;
+  color: black;
+  text-decoration: none;
+}
+
+.cartItemCon > div > span {
+  font: 300 0.9vmax "Roboto";
+  color: black;
+}
+
+.cartItemCon > div > p {
+  color: tomato;
+  cursor: pointer;
+  font: 100 0.8vmax "Roboto";
+}
+
+.cartContainer > div {
+  display: flex;
+  align-items: center;
+  height: 8vmax;
+}
+
+.cartContainer > div > button {
+  border: none;
+  background-color: rgba(40, 21, 21, 0.505);
+  transition: all 0.5s;
+  color: white;
+  cursor: pointer;
+  padding: 0.5vmax;
+}
+
+.cartContainer > div > button:hover {
+  background-color: rgba(0, 0, 0.767);
+}
+
+.cartContainer > div > input {
+  border: none;
+  width: 1vmax;
+  font: 400 0.8vmax "Roboto";
+  color: rgba(0, 0, 0, 0.74);
+  width: 1vmax;
+  padding: 0.5vmax;
+  text-align: center;
+  outline: none;
+}
+
+.cartSubTotal {
+  display: flex;
+  color: black;
+  padding: 0.5vmax;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  height: 8vmax;
+  font: 300 1vmax cursive;
+}
+
+@media screen and (max-width: 600px) {
+  .cartItemCon {
+    padding: 3vmax;
+    height: 25vmax;
+  }
+
+  .cartItemCon > img {
+    width: 10vmax;
+  }
+
+  .cartItemCon > div > a {
+    font: 300 2vmax cursive;
+  }
+
+  .cartItemCon > div > span {
+    font: 300 1.9vmax "Roboto";
+  }
+
+  .cartItemCon > div > p {
+    font: 100 1.8vmax "Roboto";
+  }
+}

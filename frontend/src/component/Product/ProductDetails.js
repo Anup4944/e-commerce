@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDeatils.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,15 +12,45 @@ import ReviewCard from "./ReviewCard.js";
 import Loader from "../Layout/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addToCartAction } from "../../Actions/cartAction";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams();
 
   const { product, isLoading, error } = useSelector(
     (state) => state.productDetails
   );
+
+  const increaseQty = () => {
+    if (product.stock <= quantity) return;
+    const qty = quantity + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQty = () => {
+    if (1 >= quantity) return;
+
+    const qty = quantity - 1;
+    setQuantity(qty);
+  };
+
+  const addToCart = () => {
+    dispatch(addToCartAction(id, quantity));
+
+    toast.success("Item added to cart", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   useEffect(() => {
     if (error) {
@@ -94,12 +124,12 @@ const ProductDetails = () => {
 
                 <div className="prodDetails-3-1">
                   <div className="prodDetails-3-1-1">
-                    <button>-</button>
-                    <input value="1" type="number" />
-                    <button>+</button>
+                    <button onClick={decreaseQty}>-</button>
+                    <input type="number" value={quantity} readOnly />
+                    <button onClick={increaseQty}>+</button>
                   </div>
 
-                  <button>Add to cart</button>
+                  <button onClick={addToCart}>Add to cart</button>
                 </div>
 
                 <p>

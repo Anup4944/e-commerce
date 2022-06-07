@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { cartReducer } from "./Reducers/cartReducer";
 
 import {
   productDetailsReducer,
@@ -17,7 +18,9 @@ const store = configureStore({
     user: userReducer,
     profile: profileReducer,
     forgotPass: forgotPassReducer,
+    cart: cartReducer,
   },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

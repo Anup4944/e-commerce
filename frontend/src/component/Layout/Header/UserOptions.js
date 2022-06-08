@@ -8,17 +8,29 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../../../Actions/userAction";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const UserOptions = ({ user }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { cartItems } = useSelector((state) => state.cart);
+
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
+    {
+      icon: (
+        <ShoppingCartIcon
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icon: <LogoutIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -41,6 +53,10 @@ const UserOptions = ({ user }) => {
   }
   function logoutUser() {
     dispatch(logoutAction());
+    navigate("/account");
+  }
+  function cart() {
+    navigate("/cart");
   }
   return (
     <Fragment>
@@ -67,6 +83,7 @@ const UserOptions = ({ user }) => {
             icon={item.icon}
             tooltipTitle={item.name}
             onClick={item.func}
+            tooltipOpen={window.innerWidth <= 600 ? true : false}
           />
         ))}
       </SpeedDial>

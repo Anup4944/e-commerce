@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../Layout/Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -21,6 +21,8 @@ const LoginSignUp = () => {
 
   const [avatar, setAvatar] = useState("./logo192.png");
   const [avatarPreview, setAvatarPreview] = useState("./logo192.png");
+
+  const location = useLocation();
 
   const [user, setUser] = useState({
     name: "",
@@ -92,6 +94,8 @@ const LoginSignUp = () => {
     }
   };
 
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
+
   useEffect(() => {
     if (error) {
       toast.error(error, {
@@ -107,7 +111,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuth) {
-      navigate("/account");
+      navigate(redirect);
     }
 
     if (message) {
@@ -122,7 +126,7 @@ const LoginSignUp = () => {
       });
       dispatch(clearMsgAction());
     }
-  }, [dispatch, error, toast, navigate, isAuth, message]);
+  }, [dispatch, error, toast, navigate, isAuth, message, redirect]);
   return (
     <Fragment>
       {isLoading ? (

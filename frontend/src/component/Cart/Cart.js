@@ -1,35 +1,101 @@
 import React, { Fragment } from "react";
 import "./Cart.css";
 import CartItem from "./CartItem.js";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCartAction, removeCartAction } from "../../Actions/cartAction";
+import { Typography } from "@mui/material";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const item = {
-    product: "productId",
-    price: "24000",
-    name: "Test Product",
-    quantity: 1,
-    image:
-      "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  const dispatch = useDispatch();
+
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const increaseQuantity = (id, quantity, stock) => {
+    const newQty = quantity + 1;
+
+    if (stock <= quantity) return;
+
+    dispatch(addToCartAction(id, newQty));
   };
+
+  const decreaseQuantity = (id, quantity) => {
+    const newQty = quantity - 1;
+
+    if (1 >= quantity) return;
+
+    dispatch(addToCartAction(id, newQty));
+  };
+
+  const deleteCart = (id) => {
+    dispatch(removeCartAction(id));
+  };
+
   return (
     <Fragment>
-      <div className="cartPage">
-        <div className="cartHeader">
-          <p>Product</p>
-          <p>Quantity</p>
-          <p>Total</p>
+      {cartItems.length === 0 ? (
+        <div className="noItem">
+          <RemoveShoppingCartIcon />
+          <Typography> No items on cart</Typography>
+          <Link to="/products">View products</Link>
         </div>
+      ) : (
+        <Fragment>
+          <div className="cartPage">
+            <div className="cartHeader">
+              <p>Product</p>
+              <p>Quantity</p>
+              <p>Total</p>
+            </div>
 
-        <div className="cartContainer">
-          <CartItem item={item} />
-          <div>
-            <button>-</button>
-            <input type="number" value={item.quantity} readOnly />
-            <button>+</button>
+            {cartItems &&
+              cartItems.map((item) => (
+                <div className="cartContainer" key={item.product}>
+                  <CartItem item={item} removeCartItm={deleteCart} />
+                  <div>
+                    <button
+                      onClick={() =>
+                        decreaseQuantity(item.product, item.quantity)
+                      }
+                    >
+                      -
+                    </button>
+                    <input type="number" value={item.quantity} readOnly />
+                    <button
+                      onClick={() =>
+                        increaseQuantity(
+                          item.product,
+                          item.quantity,
+                          item.stock
+                        )
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="cartSubTotal">{`$${item.price *
+                    item.quantity}`}</p>
+                </div>
+              ))}
+
+            <div className="cartGrossTot">
+              <div></div>
+
+              <div className="cartGrossTotBox">
+                <p>Gross Total</p>
+                <p> $500</p>
+              </div>
+
+              <div></div>
+
+              <div className="checkOutBtn">
+                <button>Check Out</button>
+              </div>
+            </div>
           </div>
-          <p className="cartSubTotal">{`$${item.price * item.quantity}`}</p>
-        </div>
-      </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

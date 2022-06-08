@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, removeCartItm }) => {
   return (
     <div className="cartItemCon">
       <img src={item.image} alt="pic" />
@@ -9,7 +9,7 @@ const CartItem = ({ item }) => {
         <Link to={`/product/${item.product}`}>{item.name}</Link>
 
         <span>{`Price : $${item.price}`}</span>
-        <p>Remove</p>
+        <p onClick={() => removeCartItm(item.product)}>Remove</p>
       </div>
     </div>
   );

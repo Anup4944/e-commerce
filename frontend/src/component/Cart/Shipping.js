@@ -18,7 +18,7 @@ const Shipping = () => {
   const { shippingInfo } = useSelector((state) => state.cart);
 
   const [address, setAddress] = useState(shippingInfo.address);
-  const [city, setCity] = useState(shippingInfo.city);
+  const [suburb, setSuburb] = useState(shippingInfo.suburb);
   const [state, setState] = useState(shippingInfo.state);
   const [country, setCountry] = useState(shippingInfo.country);
   const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
@@ -42,7 +42,7 @@ const Shipping = () => {
       return;
     }
     dispatch(
-      saveShipppingAction({ address, city, state, country, pinCode, phoneNo })
+      saveShipppingAction({ address, suburb, state, country, pinCode, phoneNo })
     );
     navigate("/order/confirm");
   };
@@ -73,10 +73,10 @@ const Shipping = () => {
               <LocationCityIcon />
               <input
                 type="text"
-                placeholder="City"
+                placeholder="Suburb"
                 required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={suburb}
+                onChange={(e) => setSuburb(e.target.value)}
               />
             </div>
 
@@ -84,7 +84,7 @@ const Shipping = () => {
               <LocalShippingIcon />
               <input
                 type="number"
-                placeholder="Pin Code"
+                placeholder="Post code"
                 required
                 value={pinCode}
                 onChange={(e) => setPinCode(e.target.value)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useEffect, useRef, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CheckOutSteps from "../Cart/CheckOutSteps";
 import { Typography } from "@mui/material";
@@ -17,6 +17,7 @@ import "./payment.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { clearErrorAction, placeOrderAction } from "../../Actions/orderAction";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -31,8 +32,20 @@ const Payment = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
   const { user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.newOrder);
 
   const payBtn = useRef(null);
+
+  console.log(cartItems);
+
+  const order = {
+    shippingInfo,
+    orderedItems: cartItems,
+    itemsPrice: orderInfo.subtotal,
+    taxPrice: orderInfo.tax,
+    shippingPrice: orderInfo.shippingCharges,
+    totalPrice: orderInfo.totalPrice,
+  };
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
@@ -55,7 +68,6 @@ const Payment = () => {
         paymentData,
         config
       );
-      console.log("Stripe", data);
 
       const client_secret = data.client_secret;
 
@@ -92,6 +104,12 @@ const Payment = () => {
         });
       } else {
         if (result.paymentIntent.status === "succeeded") {
+          order.paymentInfo = {
+            id: result.paymentIntent.id,
+            status: result.paymentIntent.status,
+          };
+
+          dispatch(placeOrderAction(order));
           navigate("/success");
         } else {
           toast.error("Issue processing the order", {
@@ -118,6 +136,21 @@ const Payment = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearErrorAction());
+    }
+  }, [error, dispatch, toast]);
 
   return (
     <Fragment>

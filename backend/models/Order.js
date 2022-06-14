@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
     suburb: { type: String, required: true },
     state: { type: String, required: true },
     country: { type: String, required: true },
-    postCode: {
+    pinCode: {
       type: Number,
       required: true,
     },
@@ -64,7 +64,7 @@ const orderSchema = new mongoose.Schema({
   },
   totalPrice: {
     type: Number,
-    defaukt: 0,
+    default: 0,
     required: true,
   },
   orderStatus: {

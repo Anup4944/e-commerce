@@ -27,6 +27,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Success from "./component/Cart/Success.js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -75,6 +76,9 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route extact path="/password/update" element={<UpdatePassword />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route extact path="/success" element={<Success />} />
         </Route>
 
         <Route element={<PrivateRoute />}>

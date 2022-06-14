@@ -1,4 +1,4 @@
-import { Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Step, StepLabel, Stepper } from "@mui/material";
 import React, { Fragment } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";

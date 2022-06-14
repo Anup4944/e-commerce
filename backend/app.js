@@ -6,6 +6,9 @@ const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middleware/error.js");
 
 const app = express();
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "backend/config/config.env" });
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -16,10 +19,12 @@ app.use(fileUpload());
 const product = require("./routes/productRoute.js");
 const user = require("./routes/userRoute.js");
 const order = require("./routes/orderRoute.js");
+const payment = require("./routes/paymentRoute.js");
 
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
+app.use("/api/v1", payment);
 
 // error middleware
 app.use(errorMiddleware);

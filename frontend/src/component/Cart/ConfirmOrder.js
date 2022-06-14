@@ -1,13 +1,11 @@
 import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CheckOutSteps from "./CheckOutSteps";
 import { Link, useNavigate } from "react-router-dom";
 import "./ConfirmOrder.css";
 
 const ConfirmOrder = () => {
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);

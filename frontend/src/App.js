@@ -21,11 +21,24 @@ import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
+import Payment from "./component/Cart/Payment.js";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
-  React.useEffect(() => {
+
+  const [key, setKey] = useState("");
+
+  const getStripeKey = async () => {
+    const { data } = await axios.get("/api/v1/stripekey");
+    setKey(data.stripeKey);
+  };
+
+  useEffect(() => {
     Webfont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
@@ -33,6 +46,8 @@ function App() {
     });
 
     store.dispatch(loadUserAction());
+
+    getStripeKey();
   }, []);
   return (
     <Router>
@@ -60,6 +75,18 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route extact path="/password/update" element={<UpdatePassword />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route
+            extact
+            path="/process/payment"
+            element={
+              <Elements stripe={loadStripe(key)}>
+                <Payment />{" "}
+              </Elements>
+            }
+          />
         </Route>
 
         <Route extact path="/password/forgot" element={<ForgotPassword />} />

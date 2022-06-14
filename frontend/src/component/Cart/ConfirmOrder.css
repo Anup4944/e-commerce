@@ -66,11 +66,8 @@
 
 .confirmCartItemsContainer > div > a {
   color: #575757;
-  margin: 0 2vmax;
   width: 60%;
   text-decoration: none;
-  display: flex;
-  justify-content: flex-start;
 }
 
 .confirmCartItemsContainer > div > span {

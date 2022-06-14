@@ -1,21 +1,19 @@
 import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import RecommendIcon from "@mui/icons-material/Recommend";
+import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 import PaymentsIcon from "@mui/icons-material/Payments";
+import "./CheckOutSteps.css";
 
 const CheckOutSteps = ({ activeStep }) => {
   const steps = [
     {
-      label: <Typography> Shipping Deatils </Typography>,
       icon: <LocalShippingIcon />,
     },
     {
-      label: <Typography>Confirm Order </Typography>,
-      icon: <RecommendIcon />,
+      icon: <AirplaneTicketIcon />,
     },
     {
-      label: <Typography> Payment </Typography>,
       icon: <PaymentsIcon />,
     },
   ];
@@ -27,9 +25,17 @@ const CheckOutSteps = ({ activeStep }) => {
     <Fragment>
       <Stepper alternativeLabel activeStep={activeStep} style={stepStyle}>
         {steps.map((item, index) => (
-          <Step key={index}>
-            <StepLabel icon={item.icon}></StepLabel>
-            {item.label}
+          <Step
+            key={index}
+            active={activeStep === index ? true : false}
+            completed={activeStep >= index ? true : false}
+          >
+            <StepLabel
+              icon={item.icon}
+              style={{
+                color: activeStep >= index ? "tomato" : "rgba(0,0,0,0.649)",
+              }}
+            ></StepLabel>
           </Step>
         ))}
       </Stepper>

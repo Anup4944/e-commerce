@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./ShippingInfo.css";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
@@ -8,8 +9,12 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import CheckOutSteps from "../Cart/CheckOutSteps.js";
+import { saveShipppingAction } from "../../Actions/cartAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Shipping = () => {
+  const navigate = useNavigate();
   const { shippingInfo } = useSelector((state) => state.cart);
 
   const [address, setAddress] = useState(shippingInfo.address);
@@ -23,10 +28,29 @@ const Shipping = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
+    if (phoneNo.length < 10 || phoneNo.length > 10) {
+      toast.error("Phone number must be 10 digit long", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    dispatch(
+      saveShipppingAction({ address, city, state, country, pinCode, phoneNo })
+    );
+    navigate("/order/confirm");
   };
+
   return (
     <Fragment>
       <CheckOutSteps activeStep={0} />
+      <ToastContainer />
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Shipping Details</h2>

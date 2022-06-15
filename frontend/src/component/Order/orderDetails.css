@@ -3,7 +3,7 @@
 }
 
 .orderDetailsContainer > h1 {
-  font: 300 3vmax "Roboto";
+  font: 300 2vmax "Roboto";
   margin: 4vmax 0;
   color: tomato;
 }
@@ -32,13 +32,6 @@
   color: black;
 }
 
-.successClass {
-  color: rgb(12, 202, 12);
-}
-
-.pendingClass {
-  color: rgba(215, 27, 27, 0.849);
-}
 .orderDetailsContainerBox > div > span {
   margin: 0 1vmax;
   font: 100 1vmax "Roboto";

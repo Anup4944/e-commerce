@@ -162,6 +162,19 @@
   margin-bottom: 4vmax;
 }
 
+.submitDialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitDialogTextArea {
+  border: 1px solid rgba(0, 0, 0, 0.082);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+  font: 300 1rem "Roboto";
+}
+
 .reviews {
   display: flex;
   overflow: auto;

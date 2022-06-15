@@ -8,3 +8,11 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.redColor {
+  color: red !important;
+}
+
+.greenColor {
+  color: green !important;
+}

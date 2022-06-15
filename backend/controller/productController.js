@@ -34,15 +34,13 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
 
   products = await apiFeature.query;
 
-  res
-    .status(200)
-    .json({
-      status: "success",
-      products,
-      productCount,
-      resultPerPage,
-      filteredProductCount,
-    });
+  res.status(200).json({
+    status: "success",
+    products,
+    productCount,
+    resultPerPage,
+    filteredProductCount,
+  });
 });
 
 // GET SINGLE PRODUCTS
@@ -138,7 +136,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   });
 
   res.status(200).json({
-    status: "success",
+    success: true,
     message: "Review added",
   });
 });
@@ -153,7 +151,7 @@ exports.getProductReview = catchAsyncErrors(async (req, res, next) => {
   }
 
   res.status(200).json({
-    status: "success",
+    success: true,
     reviews: product.reviews,
   });
 });
@@ -191,7 +189,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
   );
 
   res.status(200).json({
-    status: "success",
+    success: true,
     message: "Review deleted",
   });
 });

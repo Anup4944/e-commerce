@@ -6,6 +6,10 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  NEW_REVIEW_REQUEST,
+  NEW_REVIEW_SUCCESS,
+  NEW_REVIEW_RESET,
+  NEW_REVIEW_FAIL,
 } from "../Constants/productContants";
 
 export const productReducer = (state = { product: [] }, action) => {
@@ -59,6 +63,41 @@ export const productDetailsReducer = (state = { product: [] }, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const newReviewsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case NEW_REVIEW_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case NEW_REVIEW_SUCCESS:
+      return {
+        isLoading: false,
+        success: action.payload,
+      };
+    case NEW_REVIEW_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case NEW_REVIEW_RESET:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
       };
     case CLEAR_ERRORS:
       return {

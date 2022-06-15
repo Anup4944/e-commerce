@@ -43,6 +43,17 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// GET ALL PRODUCTS --ADMIN
+
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    status: "success",
+    products,
+  });
+});
+
 // GET SINGLE PRODUCTS
 
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {

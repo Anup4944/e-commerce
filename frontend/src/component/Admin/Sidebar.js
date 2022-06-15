@@ -18,7 +18,7 @@ const Sidebar = () => {
       <Link to="/">
         <img src={logo} alt="logoImg" />
       </Link>
-      <Link to="/">
+      <Link to="/admin/dashboard">
         <p>
           <HomeIcon /> Dashboard
         </p>

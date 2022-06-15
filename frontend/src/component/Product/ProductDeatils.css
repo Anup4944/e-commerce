@@ -275,4 +275,16 @@
     width: 20vmax;
     margin: 3vmax 0;
   }
+  .reviews {
+    display: grid;
+    place-items: center;
+  }
+
+  .reviewCard > p {
+    font: 600 3vw "Roboto";
+  }
+
+  .reviewCard > span {
+    font: 300 5vw cursive;
+  }
 }

@@ -111,19 +111,11 @@ const ProductDetails = () => {
     }
 
     if (success) {
-      toast.success("New review added", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      alert("New review added");
       dispatch({ type: NEW_REVIEW_RESET });
     }
     dispatch(getProductDetailsAction(id));
-  }, [dispatch, error, toast, id, revErr, success]);
+  }, [dispatch, error, toast, id, revErr, success, alert]);
 
   const options = {
     edit: false,

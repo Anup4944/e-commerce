@@ -30,6 +30,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Success from "./component/Cart/Success.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
+import Dashboard from "./component/Admin/Dashboard.js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -109,6 +110,10 @@ function App() {
         />
 
         <Route extact path="/cart" element={<Cart />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route extact path="/admin/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
       <Footer />
     </Router>

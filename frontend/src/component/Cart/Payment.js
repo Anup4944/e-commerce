@@ -36,12 +36,10 @@ const Payment = () => {
 
   const payBtn = useRef(null);
 
-  console.log(cartItems);
-
   const order = {
     shippingInfo,
     orderedItems: cartItems,
-    itemsPrice: orderInfo.subtotal,
+    itemPrice: orderInfo.subTotal,
     taxPrice: orderInfo.tax,
     shippingPrice: orderInfo.shippingCharges,
     totalPrice: orderInfo.totalPrice,

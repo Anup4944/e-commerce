@@ -28,6 +28,8 @@ import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Success from "./component/Cart/Success.js";
+import MyOrders from "./component/Order/MyOrders.js";
+import OrderDetails from "./component/Order/OrderDetails.js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -79,6 +81,12 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route extact path="/success" element={<Success />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route extact path="/orders" element={<MyOrders />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route extact path="/order/:id" element={<OrderDetails />} />
         </Route>
 
         <Route element={<PrivateRoute />}>

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearErrorAction,
+  deleteProductAction,
   getAllProdAdminAction,
 } from "../../Actions/productAction";
 import { DataGrid } from "@mui/x-data-grid";
@@ -13,11 +14,17 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Sidebar from "./Sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DELETE_PRODUCT_RESET } from "../../Constants/productContants";
 
 const ProductList = () => {
   const dispatch = useDispatch();
 
   const { error, product } = useSelector((state) => state.products);
+  const { error: deleteErr, isDeleted } = useSelector((state) => state.product);
+
+  const handleOnDelete = (id) => {
+    dispatch(deleteProductAction(id));
+  };
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
@@ -58,9 +65,7 @@ const ProductList = () => {
             </Link>
 
             <Button
-            // onClick={() =>
-            //   deleteProductHandler(params.getValue(params.id, "id"))
-            // }
+              onClick={() => handleOnDelete(params.getValue(params.id, "id"))}
             >
               <DeleteForeverIcon />
             </Button>
@@ -95,8 +100,33 @@ const ProductList = () => {
       });
       dispatch(clearErrorAction());
     }
+    if (deleteErr) {
+      toast.error(error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearErrorAction());
+    }
+    if (isDeleted) {
+      toast.success("Product has been deleted", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch({ type: DELETE_PRODUCT_RESET });
+    }
     dispatch(getAllProdAdminAction());
-  }, [dispatch, error, toast]);
+  }, [dispatch, error, toast, deleteErr, isDeleted]);
+
   return (
     <Fragment>
       <div className="dashboard">

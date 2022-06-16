@@ -1,22 +1,24 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./NewProduct.css";
+import "./UpdateProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import Sidebar from "./Sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NEW_PRODUCT_RESET } from "../../Constants/productContants";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import DescriptionIcon from "@mui/icons-material/Description";
 import CategoryIcon from "@mui/icons-material/Category";
 import {
   clearErrorAction,
-  newProductAction,
+  getProductDetailsAction,
+  updateProductAction,
 } from "../../Actions/productAction";
 import Loader from "../Layout/Loader/Loader";
+import { useParams } from "react-router-dom";
+import { UPDATE_PRODUCT_RESET } from "../../Constants/productContants";
 
-const NewProduct = () => {
+const UpdateProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState();
   const [desc, setDesc] = useState("");
@@ -24,12 +26,16 @@ const NewProduct = () => {
   const [stock, setStock] = useState();
   const [images, setImages] = useState([]);
   const [imagePreview, setImagePreview] = useState([]);
+  const [oldImages, setOldImages] = useState([]);
 
   const dispatch = useDispatch();
 
-  const { error, isLoading, success, message } = useSelector(
-    (state) => state.newProduct
+  const { id } = useParams();
+
+  const { error: UpdateErr, isLoading, isUpdated } = useSelector(
+    (state) => state.product
   );
+  const { error, product } = useSelector((state) => state.productDetails);
 
   const categories = [
     "Electronics",
@@ -55,13 +61,14 @@ const NewProduct = () => {
       myForm.append("images", image);
     });
 
-    dispatch(newProductAction(myForm));
+    dispatch(updateProductAction(id, myForm));
   };
 
   const handleOnImgSelect = (e) => {
     const files = Array.from(e.target.files);
     setImages([]);
     setImagePreview([]);
+    setOldImages([]);
 
     files.forEach((file) => {
       const reader = new FileReader();
@@ -78,6 +85,29 @@ const NewProduct = () => {
   };
 
   useEffect(() => {
+    if (product && product._id !== id) {
+      dispatch(getProductDetailsAction(id));
+    } else {
+      setName(product.name);
+      setDesc(product.desc);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.stock);
+      setOldImages(product.images);
+    }
+
+    if (UpdateErr) {
+      toast.error(UpdateErr, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(clearErrorAction());
+    }
     if (error) {
       toast.error(error, {
         position: "top-center",
@@ -90,8 +120,8 @@ const NewProduct = () => {
       });
       dispatch(clearErrorAction());
     }
-    if (success) {
-      toast.success(message, {
+    if (isUpdated) {
+      toast.success("Product data has been updated", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -101,9 +131,9 @@ const NewProduct = () => {
         progress: undefined,
       });
 
-      dispatch({ type: NEW_PRODUCT_RESET });
+      dispatch({ type: UPDATE_PRODUCT_RESET });
     }
-  }, [error, dispatch, toast, success, message]);
+  }, [UpdateErr, dispatch, toast, isUpdated, error, product, id]);
 
   return (
     <Fragment>
@@ -120,7 +150,7 @@ const NewProduct = () => {
                 encType="multipart/form-data"
                 onSubmit={handleOnSubmit}
               >
-                <h1>Add product</h1>
+                <h1>Update product</h1>
 
                 <div>
                   <DriveFileRenameOutlineIcon />
@@ -155,7 +185,10 @@ const NewProduct = () => {
 
                 <div>
                   <CategoryIcon />
-                  <select onChange={(e) => setCategory(e.target.value)}>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
                     <option value=""> Choose category</option>
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>
@@ -187,8 +220,19 @@ const NewProduct = () => {
                 </div>
 
                 <div id="createProductFormImage">
+                  {oldImages &&
+                    oldImages.map((image, index) => (
+                      <img
+                        src={image.url}
+                        key={index}
+                        alt="Old Product Preview"
+                      />
+                    ))}
+                </div>
+
+                <div id="createProductFormImage">
                   {imagePreview.map((image, index) => (
-                    <img src={image} key={index} alt="Avatar Preview" />
+                    <img src={image} key={index} alt="Product Preview" />
                   ))}
                 </div>
 
@@ -208,4 +252,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default UpdateProduct;

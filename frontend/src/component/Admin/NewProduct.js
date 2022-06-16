@@ -15,6 +15,7 @@ import {
   newProductAction,
 } from "../../Actions/productAction";
 import Loader from "../Layout/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const NewProduct = () => {
   const [name, setName] = useState("");
@@ -26,6 +27,7 @@ const NewProduct = () => {
   const [imagePreview, setImagePreview] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { error, isLoading, success, message } = useSelector(
     (state) => state.newProduct
@@ -100,6 +102,7 @@ const NewProduct = () => {
         draggable: true,
         progress: undefined,
       });
+      navigate("/admin/dashboard");
 
       dispatch({ type: NEW_PRODUCT_RESET });
     }

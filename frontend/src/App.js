@@ -34,6 +34,8 @@ import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct";
 import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import UpdateOrder from "./component/Admin/UpdateOrder.js";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -147,6 +149,24 @@ function App() {
             path="/admin/product/:id"
             element={
               user && user.role === "admin" ? <UpdateProduct /> : <Profile />
+            }
+          />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route
+            extact
+            path="/admin/orders"
+            element={
+              user && user.role === "admin" ? <OrderList /> : <Profile />
+            }
+          />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route
+            extact
+            path="/admin/order/:id"
+            element={
+              user && user.role === "admin" ? <UpdateOrder /> : <Profile />
             }
           />
         </Route>

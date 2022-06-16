@@ -30,11 +30,12 @@
 }
 
 .prodDetails-1 > h2 {
-  color: rgb(54, 55, 54);
-  font: 600 1.5vmax "Roboto";
+  color: tomato;
+  font: 600 1.7vmax "Roboto";
 }
 .prodDetails-1 > p {
   color: rgb(54, 55, 54, 0.582);
+  margin-top: 10px;
   font: 200 1vmax "Roboto";
 }
 
@@ -59,7 +60,7 @@
 
 .prodDetails-3 > h1 {
   color: rgba(17, 17, 17, 0.795);
-  font: 400 1.8vmax "Franklin Gothic Meduim";
+  font: 400 1.8vmax "Roboto";
   margin: 1vmax 0;
 }
 
@@ -93,6 +94,7 @@
 
 .redColor {
   color: red;
+  font-size: 2vmax;
 }
 
 .greenColor {
@@ -103,8 +105,8 @@
   cursor: pointer;
   color: white;
   transition: all 0.5s;
-  background-color: tomato;
-  font: 500 0.7vmax "Roboto";
+  background-color: rgb(40, 81, 167);
+  font: 500 0.9vmax "Roboto";
   border-radius: 20px;
   padding: 0.5vmax 2vmax;
   margin: 1vmax;
@@ -130,7 +132,8 @@
 
 .prodDetails-4 > p {
   color: rgba(0, 0, 0, 0.534);
-  font: 300 0.8vmax sans-serif;
+  font: 300 1.3vmax sans-serif;
+  margin-top: 10px;
 }
 
 .submitReview {
@@ -138,8 +141,8 @@
   cursor: pointer;
   color: white;
   transition: all 0.5s;
-  background-color: tomato;
-  font: 500 0.7vmax "Roboto";
+  background-color: rgb(40, 81, 167);
+  font: 500 0.9vmax "Roboto";
   border-radius: 20px;
   padding: 0.5vmax 2vmax;
   margin: 1vmax;
@@ -152,7 +155,7 @@
 }
 
 .reviewHeading {
-  color: red;
+  color: rgb(40, 81, 167);
   font: 500 1.4vmax "Roboto";
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.226);
@@ -208,7 +211,8 @@
 
 .noReviews {
   text-align: center;
-  font: 400 1.3vmax "Gill Sans";
+  font: 400 1.3vmax cursive;
+  color: rgb(230, 35, 13);
 }
 
 @media screen and (max-width: 600px) {

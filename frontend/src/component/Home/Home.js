@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import "./Home.css";
-import { FaMouse } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,13 +9,12 @@ import {
 import Loader from "../Layout/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { clearMsgAction } from "../../Actions/userAction";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const { product, isLoading, error } = useSelector((state) => state.products);
-  // const { message } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {
@@ -32,18 +30,6 @@ const Home = () => {
       dispatch(clearErrorAction());
     }
 
-    // if (message) {
-    //   toast.success(message, {
-    //     position: "top-center",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   dispatch(clearMsgAction());
-    // }
     dispatch(getProductAction());
     return () => {};
   }, [dispatch, error]);
@@ -66,11 +52,11 @@ const Home = () => {
           />
 
           <div className="banner">
-            <p>Welcome to my e-commerce store</p>
-            <h1>Find amazing proucts below</h1>
+            <p>Welcome to my e-commerce store!</p>
+            <h1>Find amazing products below</h1>
             <a href="#container">
               <button>
-                Scroll <FaMouse />
+                Scroll <ArrowDownwardIcon />
               </button>
             </a>
           </div>

@@ -193,7 +193,7 @@ const LoginSignUp = () => {
                   <EmailIcon />
                   <input
                     type="email"
-                    placeholder="Enter your name"
+                    placeholder="Enter your email"
                     required
                     value={email}
                     name="email"
@@ -226,7 +226,7 @@ const LoginSignUp = () => {
                   type="submit"
                   value="Register"
                   className="signBtn"
-                  // disabled={isLoading ? true : false}
+                  disabled={isLoading ? true : false}
                 />
               </form>
             </div>

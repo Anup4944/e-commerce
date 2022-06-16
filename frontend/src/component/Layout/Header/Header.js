@@ -21,7 +21,7 @@ const Header = () => {
       link3Url="/contact"
       link4Url="/about"
       link1Size="1.5vmax"
-      link1Color="red"
+      link1Color="rgb(40, 81, 167)"
       nav1justifyContent="flex-end"
       nav2justifyContent="flex-end"
       nav3justifyContent="flex-start"
@@ -35,12 +35,12 @@ const Header = () => {
       cartIcon={true}
       CartIconElement={FaCartPlus}
       profileIconUrl="/login"
-      profileIconColor="rgba(35, 35, 35,0.8)"
-      searchIconColor="rgba(35, 35, 35,0.8)"
-      cartIconColor="rgba(35, 35, 35,0.8)"
-      profileIconColorHover="#eb4034"
-      searchIconColorHover="#eb4034"
-      cartIconColorHover="#eb4034"
+      profileIconColor="rgb(40, 81, 167)"
+      searchIconColor="green"
+      cartIconColor="red"
+      profileIconColorHover="black"
+      searchIconColorHover="black"
+      cartIconColorHover="black"
       cartIconMargin="1vmax"
     />
   );

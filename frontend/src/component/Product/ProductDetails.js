@@ -98,15 +98,7 @@ const ProductDetails = () => {
       dispatch(clearErrorAction());
     }
     if (revErr) {
-      toast.error(error, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      alert(revErr);
       dispatch(clearErrorAction());
     }
 

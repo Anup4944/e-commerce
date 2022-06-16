@@ -30,7 +30,7 @@
 }
 
 .banner > a > button:hover {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgb(40, 81, 167);
   color: white;
 }
 

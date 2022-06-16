@@ -13,6 +13,11 @@ import {
   ADMIN_PRODUCT_REQUEST,
   ADMIN_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_FAIL,
+  NEW_PRODUCT_REQUEST,
+  NEW_PRODUCT_SUCCESS,
+  NEW_PRODUCT_RESET,
+  NEW_PRODUCT_FAIL,
+  CLEAR_MSG,
 } from "../Constants/productContants";
 
 export const productReducer = (state = { product: [] }, action) => {
@@ -114,6 +119,48 @@ export const newReviewsReducer = (state = {}, action) => {
       return {
         ...state,
         error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const newProductReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case NEW_PRODUCT_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case NEW_PRODUCT_SUCCESS:
+      return {
+        isLoading: false,
+        success: action.payload.success,
+        product: action.payload.product,
+        message: action.payload.message,
+      };
+    case NEW_PRODUCT_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case NEW_PRODUCT_RESET:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    case CLEAR_MSG:
+      return {
+        ...state,
+        message: null,
       };
 
     default:

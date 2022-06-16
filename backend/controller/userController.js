@@ -201,9 +201,9 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
-  d;
+
   res.status(200).json({
-    status: "success",
+    success: true,
     users,
   });
 });
@@ -211,15 +211,15 @@ exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
 // GET SINGLE USER DETAILS / USER PROFILE
 
 exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
-  const users = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id);
 
-  if (!users) {
+  if (!user) {
     return next(new ErrorHandler("User does not exits"));
   }
 
   res.status(200).json({
-    status: "success",
-    users,
+    success: true,
+    user,
   });
 });
 
@@ -242,7 +242,7 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   }
 
   res.status(200).json({
-    status: "success",
+    success: true,
     message: "Profile has been updated",
     user,
   });
@@ -256,10 +256,14 @@ exports.deleteUserProfile = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("No user found", 400));
   }
 
+  const imageId = user.avatar.public_id;
+
+  await cloudinary.v2.uploader.destroy(imageId);
+
   await user.remove();
 
   res.status(200).json({
-    status: "success",
+    success: true,
     message: "Profile has been deleted",
   });
 });

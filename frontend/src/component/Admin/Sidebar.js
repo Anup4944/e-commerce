@@ -45,12 +45,12 @@ const Sidebar = () => {
           <ListAltIcon /> Orders
         </p>
       </Link>
-      <Link to="/admin/orders">
+      <Link to="/admin/users">
         <p>
           <AccountCircleIcon /> Users
         </p>
       </Link>
-      <Link to="/admin/orders">
+      <Link to="/admin/users">
         <p>
           <RateReviewIcon /> Reviews
         </p>

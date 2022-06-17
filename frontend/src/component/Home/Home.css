@@ -15,10 +15,16 @@
   margin: 5vmax;
   font: 900 2.5vmax cursive;
   color: rgba(18, 185, 185, 0.872);
+  padding: 10px;
+  border: 1px solid orange;
+  background-color: white;
 }
 
 .banner > p {
   font: 700 1.4vmax "Lucida Sans";
+  padding: 10px;
+  border: 1px solid orange;
+  background-color: white;
   color: rgba(17, 162, 162, 0.898);
 }
 

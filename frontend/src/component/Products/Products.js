@@ -14,8 +14,14 @@ import { Slider } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const categories = ["Electronics", "Footwear", "Clothing", "Shoes", "Gaming"];
-
+const categories = [
+  "Electronics",
+  "Footwear",
+  "Clothing",
+  "Gaming",
+  "Kitchen",
+  "Household",
+];
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");

@@ -112,20 +112,19 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     for (let i = 0; i < product.images.length; i++) {
       await cloudinary.v2.uploader.destroy(product.images[i].public_id);
     }
-  }
 
-  const imagesLink = [];
+    const imagesLink = [];
 
-  for (let i = 0; i < images.length; i++) {
-    const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: "e-commerce-product",
-    });
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "e-commerce-product",
+      });
 
-    imagesLink.push({
-      public_id: result.public_id,
-      url: result.secure_url,
-    });
-
+      imagesLink.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
     req.body.images = imagesLink;
   }
 

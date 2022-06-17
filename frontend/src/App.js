@@ -39,6 +39,8 @@ import UpdateOrder from "./component/Admin/UpdateOrder.js";
 import UserList from "./component/Admin/UserList.js";
 import UpdateUser from "./component/Admin/UpdateUser.js";
 import Reviews from "./component/Admin/Reviews.js";
+import Contact from "./component/Layout/Contact/Contact";
+import NotFound from "./component/Layout/NotFound/NotFound";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.user);
@@ -61,6 +63,8 @@ function App() {
 
     getStripeKey();
   }, []);
+
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
   return (
     <Router>
       <Header />
@@ -70,6 +74,7 @@ function App() {
         <Route extact path="/" element={<Home />} />
         <Route extact path="/product/:id" element={<ProductDetails />} />
         <Route extact path="/products" element={<Products />} />
+        <Route extact path="/contact" element={<Contact />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route extact path="/search" element={<Search />} />
         <Route extact path="/login" element={<LoginSignUp />} />
@@ -199,6 +204,8 @@ function App() {
             element={user && user.role === "admin" ? <Reviews /> : <Profile />}
           />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>

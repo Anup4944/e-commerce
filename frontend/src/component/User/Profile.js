@@ -23,7 +23,6 @@ const Profile = () => {
         <Fragment>
           <div className="profile">
             <div>
-              <h1>My Profile</h1>
               <img src={user.avatar.url} alt={user.name} />
               <Link to="/update">Edit profile</Link>
             </div>

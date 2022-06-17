@@ -31,7 +31,7 @@
 }
 
 .cartHeader {
-  background-color: tomato;
+  background-color: rgb(40, 81, 167);
   width: 90%;
   box-sizing: border-box;
   display: grid;
@@ -85,9 +85,13 @@
 }
 
 .cartItemCon > div > p {
-  color: tomato;
+  color: rgb(40, 81, 167);
   cursor: pointer;
   font: 100 0.8vmax "Roboto";
+}
+
+.cartItemCon > div > p:hover {
+  color: tomato;
 }
 
 .cartContainer > div {
@@ -137,7 +141,7 @@
 }
 
 .cartGrossTotBox {
-  border-top: 3px solid tomato;
+  border-top: 3px solid rgb(40, 81, 167);
   box-sizing: border-box;
   margin: 1vmax 4vmax;
   display: flex;
@@ -151,7 +155,7 @@
   justify-content: flex-end;
 }
 .checkOutBtn > button {
-  background-color: tomato;
+  background-color: rgb(40, 81, 167);
   border-radius: 30px;
   cursor: pointer;
   color: white;

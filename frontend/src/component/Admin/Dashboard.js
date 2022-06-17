@@ -32,6 +32,13 @@ const Dashboard = () => {
       }
     });
 
+  let totalAmt = 0;
+
+  orders &&
+    orders.forEach((item) => {
+      totalAmt += item.totalPrice;
+    });
+
   useEffect(() => {
     if (error) {
       toast.error(error, {
@@ -57,7 +64,7 @@ const Dashboard = () => {
         label: "Total amount",
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72,49)"],
-        data: [0, 4000],
+        data: [0, totalAmt],
       },
     ],
   };
@@ -82,7 +89,7 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Total amount <br /> $3000
+              Total income <br /> ${totalAmt}
             </p>
           </div>
 

@@ -14,13 +14,14 @@ import {
 } from "../../Actions/userAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NoPhoto from "../../images/bbb.jpg";
 
 const LoginSignUp = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [passwordEmail, setPasswordEmail] = useState("");
 
-  const [avatar, setAvatar] = useState("./logo192.png");
-  const [avatarPreview, setAvatarPreview] = useState("./logo192.png");
+  const [avatar, setAvatar] = useState(NoPhoto);
+  const [avatarPreview, setAvatarPreview] = useState(NoPhoto);
 
   const location = useLocation();
 

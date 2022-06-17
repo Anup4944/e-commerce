@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
-import logo from "../../../images/moon-4.jpg";
+import logo from "../../../images/aaa.jpg";
 import { FaUserAlt, FaSearch, FaCartPlus } from "react-icons/fa";
 
 const Header = () => {

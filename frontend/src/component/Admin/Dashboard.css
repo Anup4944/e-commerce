@@ -14,7 +14,7 @@
 
 .dashboardContainer > h1 {
   color: black;
-  font: 300 2rem "Roboto";
+  font: 700 2rem "Roboto";
   padding: 1.5rem;
   margin: auto;
   width: 50%;
@@ -38,7 +38,7 @@
   margin: 0 2rem;
   text-align: center;
   padding: 1.5rem;
-  font: 300 1.3rem "Roboto";
+  font: 700 1.3rem "Roboto";
 }
 
 .dashboardSummary2 > a {

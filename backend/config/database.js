@@ -6,6 +6,7 @@ const connectDb = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     })
     .then((con) =>
       console.log(`Database connection sucessfull ${con.connection.host}`)

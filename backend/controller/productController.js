@@ -102,7 +102,6 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   let images = [];
-
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {

@@ -28,6 +28,8 @@ const UpdateProduct = () => {
   const [imagePreview, setImagePreview] = useState([]);
   const [oldImages, setOldImages] = useState([]);
 
+  console.log(oldImages);
+
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -46,7 +48,7 @@ const UpdateProduct = () => {
     "Household",
   ];
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -200,7 +202,7 @@ const UpdateProduct = () => {
 
                 <div>
                   <DescriptionIcon />
-                  <textarea
+                  <input
                     type="number"
                     placeholder="Stock"
                     required

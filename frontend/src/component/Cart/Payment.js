@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { clearErrorAction, placeOrderAction } from "../../Actions/orderAction";
+import Loader from "../Layout/Loader/Loader";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -32,7 +33,7 @@ const Payment = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
   const { user } = useSelector((state) => state.user);
-  const { error } = useSelector((state) => state.newOrder);
+  const { error, isLoading } = useSelector((state) => state.newOrder);
 
   const payBtn = useRef(null);
 
@@ -152,32 +153,38 @@ const Payment = () => {
 
   return (
     <Fragment>
-      <CheckOutSteps activeStep={2} />
-      <ToastContainer />
-
-      <div className="paymentContainer">
-        <form className="paymentForm" onSubmit={handleOnPayment}>
-          <Typography>Card Info</Typography>
-          <div>
-            <AddCardIcon />
-            <CardNumberElement className="paymentInput" />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          {" "}
+          <CheckOutSteps activeStep={2} />
+          <ToastContainer />
+          <div className="paymentContainer">
+            <form className="paymentForm" onSubmit={handleOnPayment}>
+              <Typography>Card Info</Typography>
+              <div>
+                <AddCardIcon />
+                <CardNumberElement className="paymentInput" />
+              </div>
+              <div>
+                <EventIcon />
+                <CardExpiryElement className="paymentInput" />
+              </div>
+              <div>
+                <VpnKeyIcon />
+                <CardCvcElement className="paymentInput" />
+              </div>
+              <input
+                type="submit"
+                value={`Pay - $${orderInfo && orderInfo.totalPrice}`}
+                ref={payBtn}
+                className="paymentFormBtn"
+              />
+            </form>
           </div>
-          <div>
-            <EventIcon />
-            <CardExpiryElement className="paymentInput" />
-          </div>
-          <div>
-            <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
-          </div>
-          <input
-            type="submit"
-            value={`Pay - $${orderInfo && orderInfo.totalPrice}`}
-            ref={payBtn}
-            className="paymentFormBtn"
-          />
-        </form>
-      </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

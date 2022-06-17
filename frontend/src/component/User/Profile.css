@@ -23,6 +23,7 @@
   color: black;
   transform: translateX(-10vw) translateY(-2vmax);
   font: 500 2.2vmax "Roboto";
+  text-decoration: underline;
 }
 
 .profile > div:first-child > img {
@@ -40,7 +41,7 @@
   text-decoration: none;
   border: none;
   font: 400 1vmax "Roboto";
-  background-color: tomato;
+  background-color: rgb(40, 81, 167);
   text-align: center;
   margin: 4vmax;
   color: white;
@@ -51,7 +52,12 @@
 }
 
 .profile > div:first-child > a:hover {
-  background-color: red;
+  background-color: tomato;
+}
+
+.profile > div > div > p {
+  border-left: 5px solid rgb(40, 81, 167);
+  padding: 10px;
 }
 
 .profile > div:last-child {
@@ -82,7 +88,7 @@
 .profile > div:last-child > div:last-child > a {
   text-decoration: none;
   border: none;
-  background-color: rgb(68, 68, 68);
+  background-color: rgb(40, 81, 167);
   color: white;
   text-align: center;
   margin: 4vmax;

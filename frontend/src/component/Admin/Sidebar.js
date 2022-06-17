@@ -50,7 +50,7 @@ const Sidebar = () => {
           <AccountCircleIcon /> Users
         </p>
       </Link>
-      <Link to="/admin/users">
+      <Link to="/admin/reviews">
         <p>
           <RateReviewIcon /> Reviews
         </p>

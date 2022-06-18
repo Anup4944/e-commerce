@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "backend for e-commerce website",
   "main": "backend/server.js",
+  "engines": {
+    "node": "15.13.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",

@@ -11,6 +11,8 @@ const ReviewCard = ({ review }) => {
     isHalf: true,
     size: window.innerWidth < 600 ? 20 : 25,
   };
+
+  console.log(review);
   return (
     <div className="reviewCard">
       <img src={profilePng} alt="User" />
